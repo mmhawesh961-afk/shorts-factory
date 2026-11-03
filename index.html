@@ -1,0 +1,202 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#101114">
+  <meta name="description" content="Turn your ideas into scroll-stopping short videos with Shorts Factory.">
+  <title>Shorts Factory — Make every second count</title>
+  <style>
+    :root {
+      color-scheme: dark;
+      --bg: #101114;
+      --panel: #191a20;
+      --text: #f7f5f2;
+      --muted: #a7a5ae;
+      --accent: #c4f36b;
+      --accent-dark: #19220c;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background: radial-gradient(ellipse at 50% 20%, #282a32 0, var(--bg) 58%);
+      color: var(--text);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    .page {
+      width: min(1120px, calc(100% - 48px));
+      margin: 0 auto;
+    }
+
+    header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 28px 0;
+    }
+
+    .brand { display: flex; align-items: center; gap: 11px; font-size: 15px; font-weight: 750; letter-spacing: -.03em; }
+    .brand-mark {
+      display: grid;
+      width: 34px;
+      height: 34px;
+      place-items: center;
+      border-radius: 11px;
+      background: var(--accent);
+      color: #14170e;
+      font-size: 16px;
+    }
+
+    .header-note { color: var(--muted); font-size: 13px; }
+
+    main {
+      display: grid;
+      min-height: calc(100vh - 106px);
+      grid-template-columns: 1.1fr .9fr;
+      align-items: center;
+      gap: 72px;
+      padding: 44px 0 90px;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      padding: 8px 12px;
+      border: 1px solid #34363c;
+      border-radius: 999px;
+      color: #d3d1d6;
+      font-size: 12px;
+      letter-spacing: .04em;
+    }
+
+    .eyebrow span { width: 7px; height: 7px; border-radius: 50%; background: var(--accent); }
+
+    h1 {
+      max-width: 650px;
+      margin: 25px 0 18px;
+      font-size: clamp(48px, 7vw, 82px);
+      line-height: .99;
+      letter-spacing: -.075em;
+    }
+
+    h1 em { color: var(--accent); font-style: normal; }
+
+    .intro { max-width: 480px; color: var(--muted); font-size: 17px; line-height: 1.7; }
+
+    .actions { display: flex; flex-wrap: wrap; align-items: center; gap: 18px; margin-top: 32px; }
+
+    .button {
+      display: inline-flex;
+      min-height: 48px;
+      align-items: center;
+      justify-content: center;
+      padding: 0 19px;
+      border-radius: 12px;
+      background: var(--accent);
+      color: #15190e;
+      font-size: 14px;
+      font-weight: 750;
+      transition: transform .18s ease, background .18s ease;
+    }
+
+    .button:hover { transform: translateY(-2px); background: #d2ff7b; }
+    .text-link { color: #d4d2d8; font-size: 14px; }
+    .text-link span { margin-left: 5px; color: var(--accent); }
+
+    .preview-wrap { position: relative; display: grid; place-items: center; }
+    .glow { position: absolute; width: 300px; height: 300px; border-radius: 50%; background: #b6ed5b; filter: blur(115px); opacity: .14; }
+
+    .preview {
+      position: relative;
+      width: min(300px, 100%);
+      aspect-ratio: 9 / 15;
+      overflow: hidden;
+      padding: 18px;
+      border: 1px solid #41434a;
+      border-radius: 32px;
+      background:
+        radial-gradient(ellipse at 65% 32%, #d2f47c 0, transparent 4%),
+        radial-gradient(ellipse at 56% 40%, #697f46 0, transparent 24%),
+        linear-gradient(155deg, #343b2b 0%, #171a18 44%, #101114 100%);
+      box-shadow: 0 30px 90px #0008, inset 0 0 0 7px #090a0d;
+    }
+
+    .preview::before {
+      position: absolute;
+      inset: 34% -20% 12%;
+      content: "";
+      background: linear-gradient(145deg, transparent 34%, #c4f36b 35% 36%, transparent 37%), linear-gradient(35deg, transparent 44%, #7a8e59 45% 46%, transparent 47%);
+      opacity: .35;
+      transform: rotate(-12deg);
+    }
+
+    .preview-top, .preview-bottom { position: absolute; z-index: 1; left: 22px; right: 22px; display: flex; align-items: center; justify-content: space-between; }
+    .preview-top { top: 28px; color: #e7e8e2; font-size: 10px; letter-spacing: .1em; text-transform: uppercase; }
+    .preview-tag { padding: 6px 9px; border: 1px solid #ffffff3d; border-radius: 999px; background: #1114; }
+    .play { position: absolute; z-index: 1; top: 50%; left: 50%; display: grid; width: 58px; height: 58px; place-items: center; border: 1px solid #ffffff70; border-radius: 50%; background: #ffffff20; color: white; font-size: 20px; transform: translate(-50%, -50%); backdrop-filter: blur(8px); }
+    .preview-bottom { bottom: 31px; align-items: end; }
+    .preview-title { max-width: 170px; font-size: 21px; font-weight: 800; line-height: 1.05; letter-spacing: -.05em; text-shadow: 0 2px 12px #000; }
+    .preview-title small { display: block; margin-top: 8px; color: var(--accent); font-size: 9px; letter-spacing: .13em; text-transform: uppercase; }
+    .sound { display: grid; width: 30px; height: 30px; place-items: center; border-radius: 50%; background: #ffffff24; font-size: 13px; }
+
+    footer { display: flex; justify-content: space-between; gap: 16px; padding: 20px 0 28px; border-top: 1px solid #ffffff12; color: #85838c; font-size: 12px; }
+
+    @media (max-width: 760px) {
+      .page { width: min(100% - 36px, 540px); }
+      header { padding: 21px 0; }
+      main { min-height: auto; grid-template-columns: 1fr; gap: 54px; padding: 54px 0 68px; }
+      h1 { font-size: clamp(52px, 13vw, 76px); }
+      .intro { font-size: 16px; }
+      .preview { width: min(270px, 78vw); }
+      footer { flex-direction: column; }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <header>
+      <a class="brand" href="#home" aria-label="Shorts Factory home">
+        <span class="brand-mark" aria-hidden="true">▶</span>
+        <span>shorts factory</span>
+      </a>
+      <span class="header-note">Ideas in. Shorts out.</span>
+    </header>
+
+    <main id="home">
+      <section aria-labelledby="hero-title">
+        <div class="eyebrow"><span aria-hidden="true"></span> YOUR NEXT BIG IDEA STARTS HERE</div>
+        <h1 id="hero-title">Make every <em>second</em> count.</h1>
+        <p class="intro">Great ideas deserve to be seen. Shorts Factory helps you turn your next spark into short-form content made to stop the scroll.</p>
+        <div class="actions">
+          <a class="button" href="mailto:hello@shortsfactory.com?subject=Shorts%20Factory">Get in touch&nbsp; ↗</a>
+          <a class="text-link" href="#about">Discover the factory <span>↓</span></a>
+        </div>
+      </section>
+
+      <div class="preview-wrap" aria-label="Short-form video preview illustration">
+        <div class="glow" aria-hidden="true"></div>
+        <div class="preview" aria-hidden="true">
+          <div class="preview-top"><span>SF / 001</span><span class="preview-tag">MADE TO MOVE</span></div>
+          <span class="play">▶</span>
+          <div class="preview-bottom">
+            <div class="preview-title">Small moments.<br>Big energy.<small>A short by Shorts Factory</small></div>
+            <span class="sound">♪</span>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <footer id="about">
+      <span>© 2026 Shorts Factory</span>
+      <span>Short-form creativity, made simple.</span>
+    </footer>
+  </div>
+</body>
+</html>
